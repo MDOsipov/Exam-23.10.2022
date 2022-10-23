@@ -44,17 +44,17 @@ export class SqlHelper {
                     }
                     else {
                         const notFoundError: systemError = errorService.getError(AppError.NoData);
-                    
+
                         if (queryResult !== undefined) {
                             switch (queryResult.length) {
                                 case 0:
                                     reject(notFoundError);
                                     break;
-                            
+
                                 case 1:
                                     resolve(queryResult[0]);
                                     break;
-                            
+
                                 default: // In case more than a single result is returned
                                     resolve(queryResult[0]);
                                     break;
@@ -95,7 +95,7 @@ export class SqlHelper {
                             reject(errorService.getError(AppError.NoData));
                             return;
                         }
-                        
+
                         resolve();
                     });
 
@@ -124,6 +124,7 @@ export class SqlHelper {
                     const queries: string[] = [query, Queries.SelectIdentity];
                     const combinedQuery: string = queries.join(";");
                     let executionCounter: number = 0;
+                    console.log(combinedQuery);
                     connection.query(combinedQuery, params, (queryError: Error | undefined, queryResult: entityWithId[] | undefined) => {
                         if (queryError) {
                             reject(errorService.getError(AppError.QueryError));
