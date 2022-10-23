@@ -40,7 +40,7 @@ export class SchoolService implements ISchoolService {
 
     public getBoardTypes(): Promise<whiteBoardType[]> {
         return new Promise<whiteBoardType[]>((resolve, reject) => {
-            let result: whiteBoardType[];
+            let result: whiteBoardType[] = [];
 
             SqlHelper.executeQueryArrayResult<localWhiteBoardType>(this._errorService, Queries.WhiteBoardTypes, Status.Active)
                 .then((queryResult: localWhiteBoardType[]) => {

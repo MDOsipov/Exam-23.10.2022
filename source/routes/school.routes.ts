@@ -4,7 +4,7 @@ import { Role } from '../enums';
 import middleware from '../middleware/auth.middleware';
 const router = express.Router();
 
-router.get('/board-types', middleware.verifyToken([Role.Administrator, Role.RegularUser]), controller.getBoardTypes);
+router.get('/board-types' /*, middleware.verifyToken([Role.Administrator, Role.RegularUser]), */, controller.getBoardTypes);
 router.get('/board-type/:id', middleware.verifyToken([Role.Administrator, Role.RegularUser]), controller.getBoardTypeById);
 router.get('/board-type-by-title/:title', middleware.verifyToken([Role.Administrator, Role.RegularUser]), controller.getBoardTypeByTitle);
 router.put('/board-type/:id', middleware.verifyToken([Role.Administrator, Role.RegularUser]), controller.updateBoardTypeById);
