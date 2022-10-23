@@ -43,7 +43,7 @@
 
 7. What is the most secure way to connect to SQL Server?
  - [ ] Integrated security
- - [ ] Mixed mode
+ - [x] Mixed mode
  - [ ] SQL Server login
  - [ ] Application role
 
@@ -155,7 +155,7 @@ FROM
 		student s
 		LEFT JOIN parent_to_student ps ON s.id = ps.student_id
 		LEFT JOIN parent p ON p.id = ps.parent_id) tab1
-INNER JOIN 
+LEFT JOIN 
 	(SELECT 
 		id,
 		CONCAT(s.first_name, ' ', s.last_name) AS student,
@@ -165,7 +165,7 @@ INNER JOIN
 		LEFT JOIN parent_to_student ps ON s.id = ps.student_id
 		LEFT JOIN parent p ON p.id = ps.parent_id) tab2 
 ON tab1.student = tab2.student AND tab1.parent != tab2.student
-INNER JOIN 
+LEFT JOIN 
 (
 	SELECT 
 		s.id AS student_id,
