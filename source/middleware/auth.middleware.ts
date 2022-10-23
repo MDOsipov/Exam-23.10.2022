@@ -11,7 +11,7 @@ interface jwtBase {
 }
 
 const verifyToken = (roles: Role[]) => (req: Request, res: Response, next: NextFunction) => {
-    let token: string | undefined = req.headers["authentication"]?.toString();
+    let token: string | undefined = req.headers["authorization"]?.toString();
 
     if (!token) {
         return res.status(403).send("A token is required for authentication");
