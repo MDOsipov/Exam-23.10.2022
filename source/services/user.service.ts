@@ -44,14 +44,16 @@ export class UserService implements IUserService {
         });
     }
 
-    public deleteById(id: number, userId: number): void {
-        const updateDate: Date = new Date();
-        SqlHelper.executeQueryNoResult(this.errorService, Queries.DeleteUserById, true, DateHelper.dateToString(updateDate), userId, Status.NotActive, id, Status.Active)
-            .then(() => {
-                return;
-            })
-            .catch((error: systemError) => {
-                throw new Error(error.message);
-            });
+    public deleteById(id: number, userId: number): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            const updateDate: Date = new Date();
+            SqlHelper.executeQueryNoResult(this.errorService, Queries.DeleteUserById, true, DateHelper.dateToString(updateDate), userId, Status.NotActive, id, Status.Active)
+                .then(() => {
+                    return;
+                })
+                .catch((error: systemError) => {
+                    throw new Error(error.message);
+                });
+        });
     }
 }

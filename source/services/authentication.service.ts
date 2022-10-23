@@ -26,7 +26,8 @@ export class AuthenticationService implements IAuthenticationService {
             if (bcrypt.compareSync(password, user.password)) {
                 const result: jwtUserData = {
                     userId: user.id,
-                    roleId: user.role_id
+                    roleId: user.role_id,
+                    loginDate: new Date()
                 };
                 return result;
             }
